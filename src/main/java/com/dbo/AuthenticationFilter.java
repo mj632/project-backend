@@ -12,6 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,9 +24,10 @@ public class AuthenticationFilter implements Filter {
 	@Autowired
 	UserDetailsRepository userDetailsRepo;
 
+	private static final Logger logger = Logger.getLogger(AuthenticationFilter.class);
+	
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -42,12 +44,15 @@ public class AuthenticationFilter implements Filter {
 			} else {
 				try {
 					res.setStatus(401);
+					logger.error("Unauthorized access to application");
 					throw new Exception("UnAuthorized");
+				
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		} else {
+			logger.info("Sign up API call");
 			arg2.doFilter(req, res);
 		}
 
