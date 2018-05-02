@@ -31,7 +31,7 @@ public class CustomerDetailsController {
 	public Map<String, String> updateDetails(@Valid @RequestBody CustomerDetails customer)
 	{
 		String uname = getUserAgent();
-		UserDetails user = userDetailsRepo.findByUname(uname);
+		UserDetails user = userDetailsRepo.findByuname(uname);
 		customer.setUser(user);
 		
 		return custServ.updateDetails(customer);

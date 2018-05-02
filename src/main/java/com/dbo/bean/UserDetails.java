@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 //import javax.persistence.NamedQueries;
 //import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="user_details")
+@SequenceGenerator(name="user_seq", initialValue=1, allocationSize=10000)
 //@NamedQueries({
 //				@NamedQuery(
 //						name = "findByUname",
@@ -22,7 +24,7 @@ public class UserDetails implements Serializable{
 	
 	
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="user_seq")
 	private long uid;
 	
 	@Column(name="uname")
@@ -31,16 +33,6 @@ public class UserDetails implements Serializable{
 	@Column(name="upassword")
 	private String upassword;
 	
-//	private CustomerDetails customer;
-//	
-//	public CustomerDetails getCustomer() {
-//		return customer;
-//	}
-//
-//	public void setCustomer(CustomerDetails customer) {
-//		this.customer = customer;
-//	}
-
 	public UserDetails(String uname, String upassword) {
 		// TODO Auto-generated constructor stub
 		this.uname = uname;
@@ -51,12 +43,6 @@ public class UserDetails implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-//	@Override
-//	public String toString()
-//	{
-//		return String.formate("user");
-//	}
-
 	public long getUid() {
 		return uid;
 	}

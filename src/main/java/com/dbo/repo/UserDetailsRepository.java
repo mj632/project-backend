@@ -11,5 +11,5 @@ import com.dbo.bean.UserDetails;
 public interface UserDetailsRepository extends CrudRepository<UserDetails, String> {
 	
 //	@Query("SELECT user FROM UserDetails user WHERE  user.uname = :uname")
-	UserDetails findByUname(String uname);
+	UserDetails findByuname(String uname);
 }

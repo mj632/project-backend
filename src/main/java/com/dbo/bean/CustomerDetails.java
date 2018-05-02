@@ -8,10 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="customer_details")
+@SequenceGenerator(name="customer_seq", initialValue=1, allocationSize=10000)
 public class CustomerDetails {
 
 	@Id
-	@GeneratedValue(strategy= GenerationType.AUTO)
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="customer_seq")
 	private long id;
 	
 	@Column(name="fname") private String fname;
@@ -28,24 +29,19 @@ public class CustomerDetails {
 		
 	}
 	
-//	public CustomerDetails(UserDetails user)
-//	{
-//		this.user = user;
-//	}
-	
-	 @Override
-	    public String toString() {
-	        String result = String.format(
-	                "CustomerDetails[uid=%d, fname='%s', lname='%s', dob='%s', email='%s']%n",
-	                id, fname, lname, dob, email);
-	        if (user != null) {
-	            result += String.format(
-	                    "UserDetails[id=%d, emailAddress='%s', password='%s', name='%s', createdBy=%d]%n",
-	                    user.getUid(), user.getUname(), user.getUpassword());
-	        }
-
-	        return result;
-	    }
+//	 @Override
+//	    public String toString() {
+//	        String result = String.format(
+//	                "CustomerDetails[uid=%d, fname='%s', lname='%s', dob='%s', email='%s']%n",
+//	                id, fname, lname, dob, email);
+//	        if (user != null) {
+//	            result += String.format(
+//	                    "UserDetails[id=%d, emailAddress='%s', password='%s', name='%s', createdBy=%d]%n",
+//	                    user.getUid(), user.getUname(), user.getUpassword());
+//	        }
+//
+//	        return result;
+//	    }
 
 	public long getId() {
 		return id;

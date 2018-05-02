@@ -38,8 +38,10 @@ public class AuthenticationFilter implements Filter {
 		HttpServletResponse res = (HttpServletResponse) arg1;
 		HttpServletRequest req = (HttpServletRequest) arg0;
 	
-		if (!req.getRequestURL().toString().contains("sign-up")) {
-			if (Objects.nonNull(userDetailsRepo.findByUname(req.getHeader("user-name")))) {
+		if (!(req.getRequestURL().toString().contains("sign-up")
+				|| req.getRequestURL().toString().contains("sign-in")
+				|| req.getRequestURL().toString().contains("dashboard"))) {
+			if (Objects.nonNull(userDetailsRepo.findByuname(req.getHeader("user-name")))) {
 				arg2.doFilter(req, res);
 			} else {
 				try {
@@ -52,7 +54,7 @@ public class AuthenticationFilter implements Filter {
 				}
 			}
 		} else {
-			logger.info("Sign up API call");
+//			logger.info("Sign up API call");
 			arg2.doFilter(req, res);
 		}
 
