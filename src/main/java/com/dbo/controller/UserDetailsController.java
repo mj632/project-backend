@@ -37,8 +37,11 @@ public class UserDetailsController {
 		try
 		{
 			UserDetails u = uService.logInUserDetails(user);
+//			String upass = uService.logInUserDetails(user);
+			String upass = u.getUpassword();
+			System.out.println("Password is : "+upass+"\n\n");
 //			System.out.println("Use Password : "+ u.getUpassword());
-			if(u.getUpassword().equals(user.getUpassword()))
+			if(upass.equals(user.getUpassword()))
 			{
 				String outputStr = "Welcome back "+user.getUname(); 
 				return outputStr;

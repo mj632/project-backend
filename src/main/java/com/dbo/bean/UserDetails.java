@@ -7,13 +7,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+//import javax.persistence.NamedQueries;
+//import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="user_details")
+//@NamedQueries({
+//				@NamedQuery(
+//						name = "findByUname",
+//						query = "from UserDetails user where user.uname = :uname"),
+//			})
 public class UserDetails implements Serializable{
 	
-	private static final long serialUID = -3009157732242241606L;
 	
 	@Id
 	@GeneratedValue(strategy= GenerationType.AUTO)
@@ -25,6 +31,16 @@ public class UserDetails implements Serializable{
 	@Column(name="upassword")
 	private String upassword;
 	
+//	private CustomerDetails customer;
+//	
+//	public CustomerDetails getCustomer() {
+//		return customer;
+//	}
+//
+//	public void setCustomer(CustomerDetails customer) {
+//		this.customer = customer;
+//	}
+
 	public UserDetails(String uname, String upassword) {
 		// TODO Auto-generated constructor stub
 		this.uname = uname;

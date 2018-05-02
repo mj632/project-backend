@@ -39,7 +39,7 @@ public class AuthenticationFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) arg0;
 	
 		if (!req.getRequestURL().toString().contains("sign-up")) {
-			if (Objects.nonNull(userDetailsRepo.findByUname(req.getHeader("userName")))) {
+			if (Objects.nonNull(userDetailsRepo.findByUname(req.getHeader("user-name")))) {
 				arg2.doFilter(req, res);
 			} else {
 				try {
